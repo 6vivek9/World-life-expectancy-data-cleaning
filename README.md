@@ -1,5 +1,5 @@
 # World-life-expectancy
-## Cleaned data in the original file and performed exploratory data analysis using MySQL
+## Cleaned data and performed exploratory data analysis using MySQL
 ### Data cleaning code
 ```
 SELECT *

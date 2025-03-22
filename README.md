@@ -7,9 +7,9 @@ FROM worldlifexpectancy;
 
 WITH cte AS
 	(SELECT Row_ID,
-			CONCAT(Country, Year) AS CY,
-			ROW_NUMBER() OVER(PARTITION BY (CONCAT(Country, Year)) ORDER BY (CONCAT(Country, Year))) AS rn
-		FROM worldlifexpectancy)
+		CONCAT(Country, Year) AS CY,
+		ROW_NUMBER() OVER(PARTITION BY (CONCAT(Country, Year)) ORDER BY (CONCAT(Country, Year))) AS rn
+	FROM worldlifexpectancy)
 SELECT Row_ID,
 	CY,
     rn
@@ -18,7 +18,7 @@ WHERE rn >1; -- Identifying duplicates
 
 DELETE FROM worldlifexpectancy
 WHERE Row_ID IN (WITH cte AS
-		(SELECT Row_ID,
+			(SELECT Row_ID,
 				CONCAT(Country, Year) AS CY,
 				ROW_NUMBER() OVER(PARTITION BY (CONCAT(Country, Year)) ORDER BY (CONCAT(Country, Year))) AS rn
 			FROM worldlifexpectancy)

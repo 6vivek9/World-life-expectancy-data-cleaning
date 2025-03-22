@@ -5,6 +5,7 @@
 SELECT *
 FROM worldlifexpectancy;
 
+
 WITH cte AS
 	(SELECT Row_ID,
 		CONCAT(Country, Year) AS CY,
@@ -16,6 +17,7 @@ SELECT Row_ID,
 FROM cte
 WHERE rn >1; -- Identifying duplicates 
 
+
 DELETE FROM worldlifexpectancy
 WHERE Row_ID IN (WITH cte AS
 			(SELECT Row_ID,
@@ -26,14 +28,17 @@ WHERE Row_ID IN (WITH cte AS
 	FROM cte
 	WHERE rn >1); -- Removing duplicates
 
+
 SELECT *
 FROM worldlifexpectancy
 WHERE Status = ''; -- Identifying blank values in Status column
 
 
+
 SELECT Status
 FROM worldlifexpectancy
 GROUP BY 1; -- Identifying types of status
+
 
 UPDATE worldlifexpectancy AS w1
 JOIN worldlifexpectancy AS w2
@@ -43,6 +48,7 @@ WHERE w1.Status = ''
 	AND w2.Status <> ''
     AND w2.Status = 'Developing'; -- Adding 'Developing' status empty rows of Developing countries
 
+
 UPDATE worldlifexpectancy AS w1
 JOIN worldlifexpectancy AS w2
 	ON w1.Country = w2.Country
@@ -51,9 +57,11 @@ WHERE w1.Status = ''
 	AND w2.Status <> ''
     AND w2.Status = 'Developed'; -- Adding 'Developed' status empty rows of Developed countries
 
+
 SELECT *
 FROM worldlifexpectancy
 WHERE Lifeexpectancy = ''; -- Identifying empty life expectancy values
+
 
  UPDATE worldlifexpectancy AS w1
  JOIN worldlifexpectancy AS w2

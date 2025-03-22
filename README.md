@@ -34,7 +34,6 @@ FROM worldlifexpectancy
 WHERE Status = ''; -- Identifying blank values in Status column
 
 
-
 SELECT Status
 FROM worldlifexpectancy
 GROUP BY 1; -- Identifying types of status
